@@ -2,11 +2,13 @@ Use it as follow, where <binary> is a file containing the binary of basic block 
 `./test <binary> <reps>`
 
 For instance, you can profile the throughput of `addq %(rbx), %rax` like this.
-```
+```bash
 # Get the binary
 $ echo 'addq (%rbx), %rax' > t.s
 $ as t.s -o t.o
 $ objcopy -j .text t.o t.bin -O binary
+
+# Get latency of running 100 iterations of the basic block
 $ ./test t.bin 100
 Core_cyc	L1_read_misses	L1_write_misses	iCache_misses	Context_switches
 875	21	-1	9	0
@@ -24,6 +26,8 @@ Core_cyc	L1_read_misses	L1_write_misses	iCache_misses	Context_switches
 766	0	-1	0	0
 765	0	-1	0	0
 764	0	-1	0	0
+
+# Get latency for 200 iterations 
 $ ./test t.bin 200
 Core_cyc	L1_read_misses	L1_write_misses	iCache_misses	Context_switches
 991	24	-1	5	0
@@ -41,6 +45,7 @@ Core_cyc	L1_read_misses	L1_write_misses	iCache_misses	Context_switches
 867	0	-1	0	0
 867	0	-1	0	0
 867	0	-1	0	0
+
 # Core_cyc column reports latency (including measurement overhead) of executing the basic block 100 (200) iterations.
 # We calculate the throughput as follow.
 $ python <(echo 'print "Throughput:", (867.0 - 764.0)/100')
