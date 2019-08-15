@@ -1,4 +1,0 @@
-Use it as follow, where <binary> is a file containing the binary of basic block you want to profile (note that we literally the binary, not an object file).
-`./test <binary> <reps>`
-
-If you fancy using the harness as a library, just include `harness.h` and link against `harness.a`.
