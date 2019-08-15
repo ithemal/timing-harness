@@ -2,7 +2,7 @@ Use it as follow, where <binary> is a file containing the binary of basic block 
 `./test <binary> <reps>`
 
 For instance, you can profile the throughput of `addq %(rbx), %rax` like this.
-```
+```bash
 # Get the binary
 $ echo 'addq (%rbx), %rax' > t.s
 $ as t.s -o t.o
