@@ -1,55 +1,49 @@
-Use it as follow, where <binary> is a file containing the binary of basic block you want to profile (note that we literally the binary, not an object file).
-`./test <binary> <reps>`
+Use it as follow, where <hex> the hex encoding of the basic block that you want to profile.
+`./test <hex> <reps>`
 
-For instance, you can profile the throughput of `addq %(rbx), %rax` like this.
-```bash
-# Get the binary
-$ echo 'addq (%rbx), %rax' > t.s
-$ as t.s -o t.o
-$ objcopy -j .text t.o t.bin -O binary
+For instance, you can profile the throughput of `cmpl %ebx, %eax` like this.
 
-# Get latency of running 100 iterations of the basic block
-$ ./test t.bin 100
+$ ./test 39d8 100 # hex code of `cmpl %ebx, %eax` is `39d8`
 Core_cyc	L1_read_misses	L1_write_misses	iCache_misses	Context_switches
-875	21	-1	9	0
-766	0	-1	0	0
-776	0	-1	1	0
-764	0	-1	0	0
-768	0	-1	0	0
-766	0	-1	0	0
-767	0	-1	0	0
-767	0	-1	0	0
-766	0	-1	0	0
-766	0	-1	0	0
-767	0	-1	0	0
-765	0	-1	0	0
-766	0	-1	0	0
-765	0	-1	0	0
-764	0	-1	0	0
+884	26	-1	1	0
+779	0	-1	0	0
+729	0	-1	0	0
+730	0	-1	0	0
+731	0	-1	0	0
+730	0	-1	0	0
+729	0	-1	0	0
+730	0	-1	0	0
+729	0	-1	0	0
+730	0	-1	0	0
+727	0	-1	0	0
+730	0	-1	0	0
+729	0	-1	0	0
+732	0	-1	0	0
+729	0	-1	0	0
 
 # Get latency for 200 iterations 
 $ ./test t.bin 200
 Core_cyc	L1_read_misses	L1_write_misses	iCache_misses	Context_switches
-991	24	-1	5	0
-897	1	-1	0	0
-905	0	-1	0	0
-865	0	-1	0	0
-867	0	-1	0	0
-868	0	-1	0	0
-864	0	-1	0	0
-865	0	-1	0	0
-867	0	-1	0	0
-867	0	-1	0	0
-865	0	-1	0	0
-868	0	-1	0	0
-867	0	-1	0	0
-867	0	-1	0	0
-867	0	-1	0	0
+1096	43	-1	1	0
+775	1	-1	0	0
+761	0	-1	0	0
+765	0	-1	0	0
+763	0	-1	0	0
+765	0	-1	0	0
+767	0	-1	0	0
+764	0	-1	0	0
+762	0	-1	0	0
+766	0	-1	0	0
+764	0	-1	0	0
+763	0	-1	0	0
+763	0	-1	0	0
+765	0	-1	0	0
+767	0	-1	0	0
 
 # Core_cyc column reports latency (including measurement overhead) of executing the basic block 100 (200) iterations.
 # We calculate the throughput as follow.
-$ python <(echo 'print "Throughput:", (867.0 - 764.0)/100')
-Throughput: 1.03
+$ python <(echo 'print "Throughput:", (762.0 - 729.0)/100')
+Throughput: 0.33
 ```
 
 
