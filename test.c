@@ -17,16 +17,32 @@
 
 #include "harness.h"
 
+uint8_t parse_hex_digit(char c) {
+  if (c >= 'a' && c <= 'f')
+    return c - 'a' + 0xa;
+  if (c >= 'A' && c <= 'F')
+    return c - 'A' + 0xa;
+  return c - '0';
+}
+
+uint8_t *hex2bin(char *hex) {
+  size_t len = strlen(hex);
+  assert(len % 2 == 0);
+  uint8_t *bin = (uint8_t *)malloc(len / 2);
+  size_t i;
+  for (i = 0; i  < len/2; i++) {
+    uint8_t hi = parse_hex_digit(hex[i*2]);
+    uint8_t lo = parse_hex_digit(hex[i*2 + 1]);
+    bin[i] = hi * 16 + lo;
+  }
+  return bin;
+}
+
 int main(int argc, char **argv) {
-  char *code_file_name = argv[1];
+  char *code_hex = argv[1];
   unsigned int unroll_factor = atoi(argv[2]);
-  FILE *code_file = fopen(code_file_name, "rb");
-  fseek(code_file, 0, SEEK_END);
-  unsigned long code_size = ftell(code_file);
-  fseek(code_file, 0, SEEK_SET);
-  char *code_to_test = malloc(code_size);
-  unsigned long bytes_read = fread(code_to_test, 1, code_size, code_file);
-  assert(bytes_read == code_size);
+  size_t code_size = strlen(code_hex)/2;
+  char *code_to_test = hex2bin(code_hex);
 
   // allocate 3 pages, the first one for testing
   // the rest for writing down result
