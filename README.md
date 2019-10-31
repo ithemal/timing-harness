@@ -23,7 +23,7 @@ Core_cyc	L1_read_misses	L1_write_misses	iCache_misses	Context_switches
 729	0	-1	0	0
 
 # Get latency for 200 iterations 
-$ ./test t.bin 200
+$ ./test 39d8 200
 Core_cyc	L1_read_misses	L1_write_misses	iCache_misses	Context_switches
 1096	43	-1	1	0
 775	1	-1	0	0
