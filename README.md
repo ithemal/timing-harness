@@ -1,5 +1,5 @@
 More information about this profiler can be found in this paper.
-* **BHive: A Benchmark Suite and Measurement Framework for Validating x86-64 Basic Block Performance Models**
+* **BHive: A Benchmark Suite and Measurement Framework for Validating x86-64 Basic Block Performance Models**</br>
   Yishen Chen, Ajay Brahmakshatriya, Charith Mendis, Alex Renda, Eric Atkinson, Ondrej Sykora, Saman Amarasinghe, and Michael Carbin</br>
   2019 IEEE International Symposium on Workload Characterization</br>
 
