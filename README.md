@@ -27,7 +27,7 @@ Core_cyc	L1_read_misses	L1_write_misses	iCache_misses	Context_switches
 840	          0	              -1	             0	           0
 790	          0	              -1	             0	           0
 791	          0	              -1	             0	           0
-790           0	              -1	             0	           0
+790               0	              -1	             0	           0
 791	          0	              -1	             0	           0
 793	          0	              -1	             0	           0
 791	          0	              -1	             0	           0
@@ -37,7 +37,7 @@ Core_cyc	L1_read_misses	L1_write_misses	iCache_misses	Context_switches
 791	          0	              -1	             0	           0
 790	          0	              -1	             0	           0
 794	          0	              -1	             0	           0
-795	          0               -1	             0	           0
+795	          0                   -1	             0	           0
 ```
 
 Note that -1 signifies that the performance counter is not available in your hardware setup.
