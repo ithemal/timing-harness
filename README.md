@@ -46,7 +46,7 @@ Note that -1 signifies that the performance counter is not available in your har
 # Get latency for 200 iterations 
 $ ./test 50 200
 Core_cyc	L1_read_misses	L1_write_misses	iCache_misses	Context_switches
-1142	         24	              -1	             0	         0
+1142           24	              -1	             0	         0
 933	            0	              -1	             0	         0
 891	            0	              -1	             0	         0
 892	            0	              -1	             0	         0
